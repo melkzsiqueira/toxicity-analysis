@@ -1,0 +1,51 @@
+@if (loading) {
+<mat-spinner diameter="100"></mat-spinner>
+}
+
+@if (!loading) {
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Análise de Toxicidade</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field appearance="outline" style="width: 100vh; margin-top: 30px;">
+      <mat-label>Digite o texto para análise</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="text"
+        rows="5"
+        placeholder="Digite aqui..."
+      ></textarea>
+    </mat-form-field>
+
+    @if (toxity) {
+    <div class="toxicity-result">
+      <h3>Resultado da Análise:</h3>
+      <p>{{ toxity }}</p>
+    </div>
+    }
+
+    @if (error) {
+    <div class="error-message">
+      <p>{{ error }}</p>
+    </div>
+    }
+
+    @if (loading) {
+    <mat-spinner diameter="50"></mat-spinner>
+    }
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button
+      mat-button
+      color="primary"
+      (click)="checkToxicity()"
+      [disabled]="!text"
+    >
+      Analisar Toxicidade
+    </button>
+  </mat-card-actions>
+</mat-card>
+}
