@@ -3,6 +3,7 @@
 import { env, pipeline } from '@xenova/transformers';
 import {
   MODEL_NAME,
+  MODEL_TASK,
   TOXICITY_THRESHOLD,
 } from '../configurations/toxicity-analysis.config';
 
@@ -16,7 +17,7 @@ addEventListener('message', async ({ data }) => {
 
   if (type === 'initialize') {
     try {
-      textToxicityPipeline = await pipeline('text-classification', MODEL_NAME);
+      textToxicityPipeline = await pipeline(MODEL_TASK, MODEL_NAME);
       postMessage({ type: 'initialized', success: true });
     } catch (error: any) {
       postMessage({ type: 'error', error: error.message });
