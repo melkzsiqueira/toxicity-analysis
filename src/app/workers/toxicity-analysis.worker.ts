@@ -2,8 +2,8 @@
 
 import { env, pipeline } from '@xenova/transformers';
 import {
-  TOXICITY_THRESHOLD,
   MODEL_NAME,
+  TOXICITY_THRESHOLD,
 } from '../configurations/toxicity-analysis.config';
 
 env.allowLocalModels = false;
