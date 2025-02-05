@@ -23,6 +23,8 @@ addEventListener('message', async ({ data }) => {
       postMessage({ type: 'error', error: error.message });
     }
   } else if (type === 'analyzeToxicity') {
+    const start = performance.now(); // Marca o início
+
     if (!textToxicityPipeline) {
       postMessage({ type: 'error', error: 'Pipeline not initialized' });
       return;
@@ -36,6 +38,9 @@ addEventListener('message', async ({ data }) => {
     } catch (error: any) {
       postMessage({ type: 'error', error: error.message });
     }
+
+    const end = performance.now(); // Marca o fim
+    console.log(`Execução demorou ${(end - start).toFixed(3)}ms`);
   }
 });
 
